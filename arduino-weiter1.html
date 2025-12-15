@@ -232,25 +232,20 @@
   }
 }
 .pdfpage {
-  border: 3px solid #7aa8ff;   /* blauer Rand */
-  border-radius: 16px;
-  background: #0f1b33;
+  border: 1px solid var(--border);
+  border-radius: 14px;
   overflow: hidden;
-  box-shadow: 0 8px 24px rgba(0,0,0,.35);
+  background: rgba(0,0,0,.2);
 }
-
 .pdfpage img {
   width: 100%;
   display: block;
-  background: white; /* wichtig: Bild liegt auf weißem "Papier" */
 }
-
 .pdfcaption {
   font-size: 12px;
   color: var(--muted);
   padding: 6px 10px;
   border-top: 1px solid var(--border);
-  background: rgba(0,0,0,.25);
 }
   </style>
 </head>
@@ -279,11 +274,10 @@
       </div>
     </div>
     <div class="navlist" id="navlist">
-      <a href="#s1" data-sec="s1"><span class="dot"></span>1. Titel & Überblick</a>
-      <a href="#s2" data-sec="s2"><span class="dot"></span>2. Inhaltsverzeichnis</a>
-      <a href="#s3" data-sec="s3"><span class="dot"></span>3. Was ist ein Mikrocontroller?</a>
-      <a href="#s4" data-sec="s4"><span class="dot"></span>4. Es leuchtet!</a>
-      <a href="#s5" data-sec="s5"><span class="dot"></span>5. Aufgaben 2.1–2.3</a>
+      <a href="#s6" data-sec="s6"><span class="dot"></span>3. Ein Programm zum Programmieren</a>
+      <a href="#s7" data-sec="s7"><span class="dot"></span>4. Das erste Blinken</a>
+      <a href="#s8" data-sec="s8"><span class="dot"></span>5.a Töne</a>
+       <a href="#s9" data-sec="s9"><span class="dot"></span>5.b Unterprogramme</a>
       <a href="#abgabe" data-sec="abgabe"><span class="dot"></span>Abgabe & Checkliste</a>
 
     </div>
@@ -431,75 +425,7 @@
   </div>
 </section>
 
-    <section class="card" id="s10">
-  <div class="inner pdfview">
-
-    <div>
-      <h3>7. Variablen</h3>
-
-      <div class="callout">
-        <strong>Merksatz</strong>
-        <div style="color:var(--muted)">
-          Variablen sind Speicherplätze für Werte, die sich während des Programms
-          ändern können.
-        </div>
-      </div>
-
-      <div class="task">
-        <div class="tasktitle">
-          <div><b>Verständnis</b></div>
-          <span class="pill">Text wird gespeichert</span>
-        </div>
-        <textarea id="t_s10"
-          placeholder="Warum sind Variablen wichtig für flexible Programme?"></textarea>
-        <div class="btnrow">
-          <button data-copy="t_s10">Text kopieren</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="pdfpage">
-      <img src="pdf-bilder/seite10.png" alt="PDF Seite 10">
-      <div class="pdfcaption">Original – Seite 10</div>
-    </div>
-
-  </div>
-</section>
-
-    <section class="card" id="s11">
-  <div class="inner pdfview">
-
-    <div>
-      <h3>8. Serielle Ausgabe</h3>
-
-      <div class="callout info">
-        <strong>Was ist das?</strong>
-        <div style="color:var(--muted)">
-          Über die serielle Schnittstelle kann der Arduino Text an den Computer senden,
-          z. B. zur Fehlersuche oder Ausgabe von Messwerten.
-        </div>
-      </div>
-
-      <div class="task">
-        <div class="tasktitle">
-          <div><b>Verständnis</b></div>
-          <span class="pill">Text wird gespeichert</span>
-        </div>
-        <textarea id="t_s11"
-          placeholder="Warum ist eine serielle Ausgabe beim Programmieren hilfreich?"></textarea>
-        <div class="btnrow">
-          <button data-copy="t_s11">Text kopieren</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="pdfpage">
-      <img src="pdf-bilder/seite11.png" alt="PDF Seite 11">
-      <div class="pdfcaption">Original – Seite 11</div>
-    </div>
-
-  </div>
-</section>
+ 
 
 <section class="card" id="abgabe">
   <div class="inner">
