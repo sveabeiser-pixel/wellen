@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Arduino Lernbaustein – Seiten 1–5</title>
+  <style>
+    :root{
+      --bg:#0b1220;
+      --panel:#0f1b33;
+      --card:#0f203f;
+      --text:#e8eefc;
+      --muted:#b8c6e6;
+      --accent:#35d0c2;
+      --accent2:#7aa8ff;
+      --warn:#ffd166;
+      --ok:#6ee7b7;
+      --border:rgba(255,255,255,.12);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius:18px;
+      --radius2:14px;
+      --max:1100px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 700px at 20% 0%, rgba(53,208,194,.14), transparent 55%),
+                  radial-gradient(900px 600px at 90% 10%, rgba(122,168,255,.14), transparent 50%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.45;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{text-decoration:underline}
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(10px);
+      background: linear-gradient(to bottom, rgba(11,18,32,.85), rgba(11,18,32,.55));
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 16px;
+      display:flex; gap:12px; align-items:center; justify-content:space-between;
+    }
+    .brand{
+      display:flex; gap:10px; align-items:center;
+      font-weight:700;
+      letter-spacing:.2px;
+    }
+    .badge{
+      font-size:12px;
+      padding:4px 10px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      color:var(--muted);
+      background:rgba(255,255,255,.03);
+    }
+    .layout{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px 16px 56px;
+      display:grid;
+      grid-template-columns: 290px 1fr;
+      gap: 16px;
+    }
+    @media (max-width: 980px){
+      .layout{grid-template-columns:1fr}
+      nav{position:relative}
+    }
+    nav{
+      position:sticky;
+      top:74px;
+      align-self:start;
+      background: rgba(255,255,255,.03);
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .navhead{
+      padding:14px 14px 10px;
+      border-bottom:1px solid var(--border);
+      background: linear-gradient(135deg, rgba(53,208,194,.12), rgba(122,168,255,.10));
+    }
+    .navhead h2{margin:0 0 6px; font-size:14px; color:var(--muted); font-weight:700}
+    .progress{
+      height:10px;
+      background: rgba(255,255,255,.06);
+      border:1px solid var(--border);
+      border-radius:999px;
+      overflow:hidden;
+    }
+    .bar{height:100%; width:0%; background: linear-gradient(90deg, var(--accent), var(--accent2))}
+    .navlist{padding:10px}
+    .navlist a{
+      display:flex; align-items:center; gap:10px;
+      padding:10px 10px;
+      border-radius:12px;
+      color:var(--text);
+      border:1px solid transparent;
+    }
+    .navlist a:hover{background:rgba(255,255,255,.04); border-color: var(--border); text-decoration:none}
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background:rgba(255,255,255,.15);
+      border:1px solid var(--border);
+    }
+    .done .dot{background: var(--ok); border-color: rgba(110,231,183,.4)}
+    main{
+      display:flex;
+      flex-direction:column;
+      gap: 14px;
+    }
+    .card{
+      background: rgba(255,255,255,.03);
+      border:1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card > .inner{padding: 18px}
+    .hero{
+      background: linear-gradient(135deg, rgba(53,208,194,.18), rgba(122,168,255,.14));
+    }
+    .hero h1{margin:0 0 8px; font-size:28px}
+    .hero p{margin:0; color:var(--muted)}
+    h3{margin:0 0 10px; font-size:18px}
+    .grid2{display:grid; grid-template-columns:1fr 1fr; gap:12px}
+    @media (max-width: 800px){ .grid2{grid-template-columns:1fr} }
+
+    .callout{
+      border:1px solid var(--border);
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.03);
+      padding:12px 12px;
+    }
+    .callout strong{display:block; margin-bottom:6px}
+    .callout.warn{border-color: rgba(255,209,102,.35); background: rgba(255,209,102,.07)}
+    .callout.tip{border-color: rgba(53,208,194,.35); background: rgba(53,208,194,.06)}
+    .callout.info{border-color: rgba(122,168,255,.35); background: rgba(122,168,255,.06)}
+
+    .task{
+      border:1px solid var(--border);
+      border-radius: var(--radius2);
+      background: rgba(255,255,255,.02);
+      padding: 12px;
+    }
+    .task header{
+      position:static;
+      background:none;
+      border:none;
+      backdrop-filter:none;
+    }
+    .tasktitle{
+      display:flex; justify-content:space-between; gap:10px; align-items:flex-start;
+      margin-bottom:8px;
+    }
+    .pill{
+      font-size:12px;
+      padding:4px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      color:var(--muted);
+      background: rgba(255,255,255,.03);
+      white-space:nowrap;
+    }
+    textarea{
+      width:100%;
+      min-height: 110px;
+      resize: vertical;
+      padding:10px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(15,32,63,.55);
+      color: var(--text);
+      outline:none;
+    }
+    textarea:focus{border-color: rgba(53,208,194,.65); box-shadow: 0 0 0 3px rgba(53,208,194,.15)}
+    .btnrow{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
+    button{
+      cursor:pointer;
+      padding:10px 12px;
+      border-radius: 12px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      font-weight:600;
+    }
+    button.primary{
+      background: linear-gradient(90deg, rgba(53,208,194,.22), rgba(122,168,255,.18));
+      border-color: rgba(122,168,255,.35);
+    }
+    button:hover{filter: brightness(1.08)}
+    .small{font-size:12px; color:var(--muted)}
+    .sep{height:1px; background:var(--border); margin:12px 0}
+    .kvs{display:grid; grid-template-columns: 1fr; gap:10px}
+    .kv{
+      border:1px dashed rgba(255,255,255,.18);
+      border-radius: 14px;
+      padding:10px 12px;
+      background: rgba(255,255,255,.02);
+    }
+    .kv b{color: var(--accent)}
+    .footer{
+      color:var(--muted);
+      font-size:12px;
+      padding:12px 18px 18px;
+      border-top:1px solid var(--border);
+      background: rgba(0,0,0,.12);
+    }
+    .kbd{
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 12px;
+      padding: 2px 6px;
+      border:1px solid var(--border);
+      border-bottom-width:2px;
+      border-radius:8px;
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+    }
+    .pdfview {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 14px;
+}
+@media (max-width: 900px) {
+  .pdfview {
+    grid-template-columns: 1fr;
+  }
+}
+.pdfpage {
+  border: 3px solid #7aa8ff;   /* blauer Rand */
+  border-radius: 16px;
+  background: #0f1b33;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0,0,0,.35);
+}
+
+.pdfpage img {
+  width: 100%;
+  display: block;
+  background: white; /* wichtig: Bild liegt auf weißem "Papier" */
+}
+
+.pdfcaption {
+  font-size: 12px;
+  color: var(--muted);
+  padding: 6px 10px;
+  border-top: 1px solid var(--border);
+  background: rgba(0,0,0,.25);
+}
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="topbar">
+    <div class="brand">
+      <span style="width:14px;height:14px;border-radius:4px;background:linear-gradient(135deg,var(--accent),var(--accent2));display:inline-block"></span>
+      <span>Arduino – Lernbaustein (Seiten 1–5)</span>
+      <span class="badge">GitHub Pages • interaktiv</span>
+    </div>
+    <div class="badge" id="saveState">Lokale Speicherung: aktiv</div>
+  </div>
+</header>
+
+<div class="layout">
+  <nav aria-label="Navigation">
+    <div class="navhead">
+      <h2>Dein Lernpfad</h2>
+      <div class="progress" title="Fortschritt (lokal auf diesem Gerät)">
+        <div class="bar" id="bar"></div>
+      </div>
+      <div class="small" style="margin-top:8px">
+        Tipp: Markiere erledigt, wenn du eine Aufgabe abgeschlossen hast.
+      </div>
+    </div>
+    <div class="navlist" id="navlist">
+      <a href="#s1" data-sec="s1"><span class="dot"></span>1. Titel & Überblick</a>
+      <a href="#s2" data-sec="s2"><span class="dot"></span>2. Inhaltsverzeichnis</a>
+      <a href="#s3" data-sec="s3"><span class="dot"></span>3. Was ist ein Mikrocontroller?</a>
+      <a href="#s4" data-sec="s4"><span class="dot"></span>4. Es leuchtet!</a>
+      <a href="#s5" data-sec="s5"><span class="dot"></span>5. Aufgaben 2.1–2.3</a>
+      <a href="#abgabe" data-sec="abgabe"><span class="dot"></span>Abgabe & Checkliste</a>
+
+    </div>
+  </nav>
+
+  <main>
+    <section class="card" id="s6">
+  <div class="inner pdfview">
+
+    <div>
+      <h3>3. Ein Programm zum Programmieren</h3>
+
+      <div class="callout info">
+        <strong>Arduino-IDE</strong>
+        <div style="color:var(--muted)">
+          Programme für den Arduino werden in der Arduino-Entwicklungsumgebung
+          (IDE) geschrieben und per USB auf den Mikrocontroller übertragen.
+        </div>
+      </div>
+
+      <div class="task">
+        <div class="tasktitle">
+          <div><b>Verständnisfrage</b></div>
+          <span class="pill">Text wird gespeichert</span>
+        </div>
+        <textarea id="t_s6"
+          placeholder="Warum braucht man eine spezielle Entwicklungsumgebung für den Arduino?"></textarea>
+        <div class="btnrow">
+          <button data-copy="t_s6">Text kopieren</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pdfpage">
+      <img src="pdf-bilder/seite06.png" alt="PDF Seite 6">
+      <div class="pdfcaption">Original – Seite 6</div>
+    </div>
+
+  </div>
+</section>
+
+
+ <section class="card" id="s7">
+  <div class="inner pdfview">
+
+    <div>
+      <h3>4. Das erste Blinken</h3>
+
+      <div class="callout">
+        <strong>Idee</strong>
+        <div style="color:var(--muted)">
+          Eine LED wird mithilfe eines Programms regelmäßig ein- und ausgeschaltet.
+          Damit testet man, ob Hardware und Software korrekt funktionieren.
+        </div>
+      </div>
+
+      <div class="task">
+        <div class="tasktitle">
+          <div><b>Überlege</b></div>
+          <span class="pill">Text wird gespeichert</span>
+        </div>
+        <textarea id="t_s7"
+          placeholder="Warum ist ein Blink-Programm ein sinnvoller erster Test?"></textarea>
+        <div class="btnrow">
+          <button data-copy="t_s7">Text kopieren</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pdfpage">
+      <img src="pdf-bilder/seite07.png" alt="PDF Seite 7">
+      <div class="pdfcaption">Original – Seite 7</div>
+    </div>
+
+  </div>
+</section>
+
+    <section class="card" id="s8">
+  <div class="inner pdfview">
+
+    <div>
+      <h3>5. Töne erzeugen</h3>
+
+      <div class="callout tip">
+        <strong>Prinzip</strong>
+        <div style="color:var(--muted)">
+          Durch schnelles Ein- und Ausschalten eines Pins können Schwingungen
+          erzeugt werden, die man als Ton hört.
+        </div>
+      </div>
+
+      <div class="task">
+        <div class="tasktitle">
+          <div><b>Verständnis</b></div>
+          <span class="pill">Text wird gespeichert</span>
+        </div>
+        <textarea id="t_s8"
+          placeholder="Wovon hängt die Tonhöhe bei einem Lautsprecher ab?"></textarea>
+        <div class="btnrow">
+          <button data-copy="t_s8">Text kopieren</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pdfpage">
+      <img src="pdf-bilder/seite08.png" alt="PDF Seite 8">
+      <div class="pdfcaption">Original – Seite 8</div>
+    </div>
+
+  </div>
+</section>
+
+    <section class="card" id="s9">
+  <div class="inner pdfview">
+
+    <div>
+      <h3>6. Unterprogramme (Funktionen)</h3>
+
+      <div class="callout info">
+        <strong>Warum Unterprogramme?</strong>
+        <div style="color:var(--muted)">
+          Wiederkehrende Abläufe können in Funktionen ausgelagert werden.
+          Das macht Programme übersichtlicher und leichter veränderbar.
+        </div>
+      </div>
+
+      <div class="task">
+        <div class="tasktitle">
+          <div><b>Denken wie ein Programmierer</b></div>
+          <span class="pill">Text wird gespeichert</span>
+        </div>
+        <textarea id="t_s9"
+          placeholder="Nenne ein Beispiel aus dem Alltag, das man als 'Unterprogramm' sehen kann."></textarea>
+        <div class="btnrow">
+          <button data-copy="t_s9">Text kopieren</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pdfpage">
+      <img src="pdf-bilder/seite09.png" alt="PDF Seite 9">
+      <div class="pdfcaption">Original – Seite 9</div>
+    </div>
+
+  </div>
+</section>
+
+    <section class="card" id="s10">
+  <div class="inner pdfview">
+
+    <div>
+      <h3>7. Variablen</h3>
+
+      <div class="callout">
+        <strong>Merksatz</strong>
+        <div style="color:var(--muted)">
+          Variablen sind Speicherplätze für Werte, die sich während des Programms
+          ändern können.
+        </div>
+      </div>
+
+      <div class="task">
+        <div class="tasktitle">
+          <div><b>Verständnis</b></div>
+          <span class="pill">Text wird gespeichert</span>
+        </div>
+        <textarea id="t_s10"
+          placeholder="Warum sind Variablen wichtig für flexible Programme?"></textarea>
+        <div class="btnrow">
+          <button data-copy="t_s10">Text kopieren</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pdfpage">
+      <img src="pdf-bilder/seite10.png" alt="PDF Seite 10">
+      <div class="pdfcaption">Original – Seite 10</div>
+    </div>
+
+  </div>
+</section>
+
+    <section class="card" id="s11">
+  <div class="inner pdfview">
+
+    <div>
+      <h3>8. Serielle Ausgabe</h3>
+
+      <div class="callout info">
+        <strong>Was ist das?</strong>
+        <div style="color:var(--muted)">
+          Über die serielle Schnittstelle kann der Arduino Text an den Computer senden,
+          z. B. zur Fehlersuche oder Ausgabe von Messwerten.
+        </div>
+      </div>
+
+      <div class="task">
+        <div class="tasktitle">
+          <div><b>Verständnis</b></div>
+          <span class="pill">Text wird gespeichert</span>
+        </div>
+        <textarea id="t_s11"
+          placeholder="Warum ist eine serielle Ausgabe beim Programmieren hilfreich?"></textarea>
+        <div class="btnrow">
+          <button data-copy="t_s11">Text kopieren</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pdfpage">
+      <img src="pdf-bilder/seite11.png" alt="PDF Seite 11">
+      <div class="pdfcaption">Original – Seite 11</div>
+    </div>
+
+  </div>
+</section>
+
+<section class="card" id="abgabe">
+  <div class="inner">
+    <h3>Abgabe – Seiten 6–11</h3>
+
+    <div class="callout info">
+      <strong>Beantworte zur Abgabe:</strong>
+      <ol style="color:var(--muted)">
+        <li>Was ist der Zweck der Arduino-IDE?</li>
+        <li>Warum testet man Programme oft mit einer blinkenden LED?</li>
+        <li>Was leisten Unterprogramme?</li>
+        <li>Warum sind Variablen unverzichtbar?</li>
+        <li>Wofür nutzt man die serielle Ausgabe?</li>
+      </ol>
+    </div>
+
+    <div class="task">
+      <div class="tasktitle">
+        <div><b>Gesamtabgabe</b></div>
+        <span class="pill">lokal gespeichert</span>
+      </div>
+      <textarea id="t_abgabe_6_11"
+        placeholder="Formuliere hier deine zusammenhängenden Antworten."></textarea>
+      <div class="btnrow">
+        <button data-copy="t_abgabe_6_11">Gesamten Text kopieren</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+    
+  </main>
+</div>
+
+<script>
+  // ---------- LocalStorage helpers ----------
+  const LS_PREFIX = "arduino_lernbaustein_s1-5__";
+  const $ = (sel) => document.querySelector(sel);
+
+  function lsKey(id){ return LS_PREFIX + id; }
+
+  function saveText(id, val){
+    localStorage.setItem(lsKey(id), val);
+  }
+  function loadText(id){
+    return localStorage.getItem(lsKey(id)) ?? "";
+  }
+  function setDone(secId, done=true){
+    localStorage.setItem(lsKey("done__"+secId), done ? "1" : "0");
+    refreshDoneUI();
+  }
+  function isDone(secId){
+    return (localStorage.getItem(lsKey("done__"+secId)) ?? "0") === "1";
+  }
+
+  // Load all textareas
+  document.querySelectorAll("textarea").forEach(t => {
+    t.value = loadText(t.id);
+    t.addEventListener("input", () => saveText(t.id, t.value));
+  });
+
+  // Buttons: copy / clear / done
+  document.addEventListener("click", async (e) => {
+    const btn = e.target.closest("button");
+    if(!btn) return;
+
+    const copyId = btn.getAttribute("data-copy");
+    const clearId = btn.getAttribute("data-clear");
+    const doneSec = btn.getAttribute("data-done");
+
+    if(copyId){
+      const val = loadText(copyId);
+      try{
+        await navigator.clipboard.writeText(val);
+        btn.textContent = "Kopiert!";
+        setTimeout(()=>btn.textContent="Text kopieren", 900);
+      }catch{
+        alert("Kopieren nicht möglich. Markiere den Text manuell und kopiere ihn.");
+      }
+    }
+    if(clearId){
+      if(confirm("Feld wirklich leeren?")){
+        saveText(clearId, "");
+        $("#"+clearId).value = "";
+      }
+    }
+    if(doneSec){
+      setDone(doneSec, true);
+    }
+  });
+
+  // Nav done state + progress
+  function refreshDoneUI(){
+    const links = document.querySelectorAll("#navlist a[data-sec]");
+    let doneCount = 0;
+
+    links.forEach(a=>{
+      const sec = a.getAttribute("data-sec");
+      const dot = a.querySelector(".dot");
+      if(isDone(sec)){
+        a.classList.add("done");
+        dot && dot.parentElement && dot.parentElement.classList?.add?.("done");
+        doneCount++;
+        a.classList.add("done");
+      } else {
+        a.classList.remove("done");
+      }
+    });
+
+    const pct = Math.round((doneCount / links.length) * 100);
+    $("#bar").style.width = pct + "%";
+  }
+  refreshDoneUI();
+
+  // Save-state badge
+  try{
+    localStorage.setItem(lsKey("__ping"), "1");
+    $("#saveState").textContent = "Lokale Speicherung: aktiv";
+  }catch{
+    $("#saveState").textContent = "Lokale Speicherung: nicht verfügbar";
+  }
+</script>
+</body>
+</html>
