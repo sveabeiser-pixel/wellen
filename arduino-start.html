@@ -1,3 +1,30 @@
+.pdfview {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 14px;
+}
+@media (max-width: 900px) {
+  .pdfview {
+    grid-template-columns: 1fr;
+  }
+}
+.pdfpage {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(0,0,0,.2);
+}
+.pdfpage img {
+  width: 100%;
+  display: block;
+}
+.pdfcaption {
+  font-size: 12px;
+  color: var(--muted);
+  padding: 6px 10px;
+  border-top: 1px solid var(--border);
+}
+
 <!doctype html>
 <html lang="de">
 <head>
