@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WellenLibrary – Demo (autoNav)</title>
+  <link rel="stylesheet" href="wellen_library_v2.css">
+</head>
+<body>
+  <div data-wb-book>
+    <script type="application/json" class="wb-book-config">
+    {
+      "bookTitle":"Wellen",
+      "sectionTitle":"Wellen",
+      "startPage": 1,
+      "submitLabel":"Summary & submit",
+      "onSubmit":"alert",
+      "autoNav": true,
+      "autoNavHeadings": ["h1","h2"],
+      "autoNavIncludeBlocks": true,
+      "autoNavGroupTitle": "Wellen"
+    }
+    </script>
+
+    <section data-wb-page="1">
+      <h1>Herzlich Willkommen!</h1>
+      <p class="wb-muted">Navigation wird automatisch erzeugt.</p>
+      <h2>Voraussetzungen</h2>
+      <p>(Platzhalter) Text …</p>
+      <div class="wb-img-ph" aria-label="Bildplatzhalter"></div>
+    </section>
+
+    <section data-wb-page="2" style="display:none">
+      <h1>Interaktive Aufgaben</h1>
+      <h2>Aufgaben</h2>
+
+      <div data-wb-type="mcq">
+        <script type="application/json" class="wb-config">
+        {
+          "id":"mcq1",
+          "title":"Multiple Choice – Beispiel",
+          "questions":[
+            {
+              "text":"Welche Aussage ist richtig?",
+              "multiple":false,
+              "choices":[
+                {"id":"a","label":"Wellen transportieren Materie."},
+                {"id":"b","label":"Wellen transportieren Energie."}
+              ],
+              "correct":["b"],
+              "explain":"Wellen transportieren Energie/Information."
+            }
+          ]
+        }
+        </script>
+      </div>
+
+      <div data-wb-type="cloze">
+        <script type="application/json" class="wb-config">
+        {
+          "id":"cloze1",
+          "title":"Drag the Words – Beispiel",
+          "bank":["Energie","Amplitude"],
+          "segments":[
+            {"t":"text","v":"Eine Welle transportiert "},
+            {"t":"gap","a":"Energie"},
+            {"t":"text","v":". Die "},
+            {"t":"gap","a":"Amplitude"},
+            {"t":"text","v":" ist die maximale Auslenkung."}
+          ]
+        }
+        </script>
+      </div>
+
+      <h2>Reflexion</h2>
+      <div data-wb-type="essay">
+        <script type="application/json" class="wb-config">
+        {
+          "id":"essay1",
+          "title":"Freitext – Beispiel",
+          "storagePrefix":"wellen_",
+          "exportName":"wellen-ergebnisse.txt",
+          "fields":[
+            {"label":"Name","key":"name","kind":"text","placeholder":"Vorname Nachname"},
+            {"label":"Antwort","key":"answer","kind":"textarea","placeholder":"Schreibe hier..."}
+          ]
+        }
+        </script>
+      </div>
+
+    </section>
+  </div>
+
+  <script src="wellen_library_v2.js"></script>
+  <script>
+    WellenBook.autoMount();
+    WellenBlocks.autoMount();
+  </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Wellen – Template</title>
+  <link rel="stylesheet" href="wellen_library_v2.css">
+</head>
+<body>
+  <div data-wb-book>
+    <script type="application/json" class="wb-book-config">
+    {
+      "bookTitle":"Wellen",
+      "sectionTitle":"Wellen",
+      "startPage": 1,
+      "autoNav": true,
+      "autoNavHeadings": ["h1","h2"],
+      "autoNavIncludeBlocks": true
+    }
+    </script>
+
+    <section data-wb-page="1">
+      <h1>Kapitel 1</h1>
+      <h2>Einführung</h2>
+      <p class="wb-muted">Text …</p>
+    </section>
+
+    <section data-wb-page="2" style="display:none">
+      <h1>Kapitel 2</h1>
+
+      <div data-wb-type="mcq">
+        <script type="application/json" class="wb-config">
+        {
+          "id":"mcq_k2_1",
+          "title":"Multiple Choice",
+          "questions":[
+            {
+              "text":"Frage…",
+              "multiple":false,
+              "choices":[
+                {"id":"a","label":"Antwort A"},
+                {"id":"b","label":"Antwort B"}
+              ],
+              "correct":["b"],
+              "explain":"Kurz erklären…"
+            }
+          ]
+        }
+        </script>
+      </div>
+
+      <div data-wb-type="cloze">
+        <script type="application/json" class="wb-config">
+        {
+          "id":"cloze_k2_1",
+          "title":"Drag the Words",
+          "bank":["Wort1","Wort2"],
+          "segments":[
+            {"t":"text","v":"Text mit "},
+            {"t":"gap","a":"Wort1"},
+            {"t":"text","v":" und noch eine Lücke "},
+            {"t":"gap","a":"Wort2"},
+            {"t":"text","v":"."}
+          ]
+        }
+        </script>
+      </div>
+
+      <div data-wb-type="essay">
+        <script type="application/json" class="wb-config">
+        {
+          "id":"essay_k2_1",
+          "title":"Freitext",
+          "storagePrefix":"wellen_",
+          "exportName":"ergebnisse.txt",
+          "fields":[
+            {"label":"Name","key":"name","kind":"text","placeholder":"Vorname Nachname"},
+            {"label":"Antwort","key":"answer","kind":"textarea","placeholder":"Schreibe hier..."}
+          ]
+        }
+        </script>
+      </div>
+
+    </section>
+  </div>
+
+  <script src="wellen_library_v2.js"></script>
+  <script>
+    WellenBook.autoMount();
+    WellenBlocks.autoMount();
+  </script>
+</body>
+</html>
