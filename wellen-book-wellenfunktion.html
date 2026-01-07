@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>WellenLibrary – Demo (autoNav)</title>
+  <link rel="stylesheet" href="wellen_library_v2.css">
+  <script>
+  window.MathJax = {
+    tex: {
+      inlineMath: [['$', '$'], ['\\(', '\\)']]
+    }
+  };
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+</head>
+<body>
+  <div data-wb-book>
+    <script type="application/json" class="wb-book-config">
+    {
+      "bookTitle":"Wellen",
+      "sectionTitle":"Wellenfunktion",
+      "startPage": 1,
+      "submitLabel":"Summary & submit",
+      "onSubmit":"alert",
+      "autoNav": true,
+      "autoNavHeadings": ["h1","h2"],
+      "autoNavIncludeBlocks": true,
+      "autoNavGroupTitle": "Wellen"
+    }
+    </script>
+
+    <section data-wb-page="1">
+      <h1>Herzlich Willkommen!</h1>
+      <p class="wb-muted">Hier lernst du nun, was eine Wellenfunktion ist und welche Möglichkeiten es gibt, sie zu zeichnen.</p>
+      <h2>Was ist eine Wellenfunktion?</h2>
+      <p> Eine Wellenfunktion (in der Wellenlehre am Seil, in einer „linearen Kette“ von Teilchen usw.) 
+        ist eine Vorschrift, die jedem Ort und jeder Zeit eine Auslenkung zuordnet. <br>
+        Ort entlang des Seils: x <br>
+        Zeit: t <br>
+        Auslenkung (z.B. nach oben/unten): y <br>
+        Dann ist die Wellenfunktion typischerweise y(x,t) <br>
+        Das bedeutet: Wenn du x und t vorgibst, sagt dir die Funktion, wie stark das Seilteilchen dort gerade ausgelenkt ist. <br>
+
+        Wichtig: y(x,t) ist eine Funktion mit zwei „Eingaben“ (Ort und Zeit), deshalb kann man die Funktion nicht einfach zeichnen, 
+        es wäre eine dreidimensionale Fläche. Vielleicht probierst du es mit Geogebra aus? Deshalb teilt man die Wellenfunktion zum Zeichnen auf zwei verschiedene Diagrammtypen auf. 
+        Einmal zeichnet man die Funktion in Abhängigkeit vom Ort (bei festgehaltener Zeit) und einmal in Abhängigkeit von der Zeit (bei festgehaltenem Ort). <br>
+        Beide Diagramme sind Sinuskurven, aber sie zeigen völlig verschiedene Dinge,
+        je nachdem, was man festhält.</p>
+
+
+<h2>Zeitlicher Verlauf: Schwingung an einem festen Ort zeichnen ( y-t-Diagramm )</h2>
+      <p> 
+
+Das ist der leichtere Part, da du das schon von den Schwingungen kennst. Du wählst einen festen Ort (also ein bestimmtes Teilchen/Seilstück) und beobachtest, 
+wie es sich mit der Zeit bewegt. <br>
+
+Dann wird aus y(x,t) eine reine Zeitfunktion y(t). <br>
+Auf die x-Achse kommt die Zeit t. <br>
+Auf die y-Achse kommt die Auslenkung y. <br>
+
+Ergebnis: Das 
+y-t-Diagramm ist ebenfalls eine Sinuskurve. <br>
+
+Interpretation: Du siehst die Schwingung eines einzelnen Teilchens (wie es auf und ab geht), wenn die Welle an ihm vorbeiläuft. <br>
+
+<b>Merksatz:</b> <br>
+
+Momentaufnahme = „Wie schwingt ein bestimmter Ort im zeitlichen Verlauf?“ <br>
+
+Diagramm: y gegen t bei festem x. <br>
+Da sich die Welle erst durch die Kopplungen der Teilchen ausbreitet, sind die einzelnen Sinusschwingungen der von der Welle erfassten 
+Teilchen phasenverschoben. Die Phasenverschiebung Δφ = &omega; t hängt davon ab wie weit das betrachtete Teilchen vom ersten Teilchen der Kette entfernt ist.</p>
+
+
+
+     <div class="wb-img">
+  <img src="pdf-bilder/bild01.png" alt="Zeitlicher Verlauf einer harmonischen Welle">
+</div>
+
+ <br>
+ <h3>Betrachtung verschiedener Orte</h3>
+
+Wenn man den Anfang der Welle bei x=0 betrachtet, so hat dieses Teilchen die Phase φ = 0 zur Zeit t=0. <br>
+Wenn man nun den Ort um einen Abstand Δx weiter wandert, ändert sich die Phase um Δφ = k·Δx = 2π/λ·Δx, wobei k die Wellenzahl ist (k = 2π/λ). <br>
+Nach einer ganzen Wellenlänge λ ist die Phasendifferenz Δφ = 2π, das heißt das Teilchen schwingt wieder in der gleichen Phase wie das erste Teilchen. <br>
+Nach einer halben Wellenlänge Δx = λ/2 ist die Phasendifferenz Δφ = π, das heißt das Teilchen schwingt gegenphasig zum ersten Teilchen. <br>
+Die Amplitude A der Schwingung ist für alle Teilchen gleich groß (A ist ortsunabhängig), nur die Phase ändert sich mit dem Ort entlang des Seils.
+<br>
+<h3>Schritt für Schritt-Anleitung</h3>
+Schaut man sich nun einen Punkt an, der einen bestimmten Abstand Δx vom Anfang der Welle hat, so schwingt dieser Punkt mit einer Phasenverschiebung Δφ im Vergleich zum Anfangspunkt der Welle. <br>
+Nun kommt eine einfache Erklärung, wie man ohne die Phasenverschiebung zu berechnen, die Welllw zeichnen kann:
+Man schaut, wann die Schwingung an dem Punkt ankommt, den man betrachtet, wenn zum Zeitpunkt t=0 die Schwingung am Anfangspunkt startet. <br>
+Da sich die Welle konstant mit der Geschwindigkeit c ausbreitet, kommt die Schwingung nach der Zeit t = Δx/c an dem Punkt an, der den Abstand Δx vom Anfangspunkt hat. <br>
+Das heißt, man kann die Welle auch zeichnen, indem man die Schwingung am Anfangspunkt um die Zeit t = Δx/c nach rechts verschiebt, und bis dahin die Schwingung Null ist. <br>
+</p>
+<p><b>Beispiel 1:</b> Ein Punkt ist Δx=105cm vom Erreger entfernt. Die Amplitude der Schwingung ist A=20cm und die Ausbreitungsgeschwindigkeit der Welle ist c=0,3 m/s. <br>
+Zum Zeitpunkt t=0s fängt der Erreger an mit Periodendauer T=0,5s nach oben zu schwingen.</p>
+<p>Da es eine konstante Bewegung ist, mit der sich die Störung ausbreitet, gilt: c=Δx/t, also t = Δx/c = 1,05m / 0,3m/s = 3,5s, und somit fängt der Punkt erst 3,5s später an zu schwingen. Solange steht der Punkt still.
+  <br>
+  Danach schwingt der Punkt mit der gleichen Amplitude A=20cm und der gleichen Periodendauer T=0,5s wie der Erreger nach oben zu schwingen: <br>
+</p>
+    <div class="wb-img">
+  <img src="pdf-bilder/bild04.png" alt="Momentaufnahme einer harmonischen Welle">
+</div>
+
+        <h2>Momentaufnahme: Welle zu einem festen Zeitpunkt zeichnen ( y-x-Diagramm )</h2>
+      <p> 
+
+Momentaufnahme heißt: Du „friest“ die Zeit ein, also du wählst einen festen Zeitpunkt aus und 
+betrachtest die Welle genau in diesem Moment. <br>
+Dann wird aus y(x,t) eine reine Ortsfunktion y(x) zu einem bestimmten Zeitpunkt t_0.
+Auf die x-Achse kommt der Ort x (entlang des Seils).
+
+Auf die y-Achse kommt die Auslenkung y. <br>
+
+Ergebnis: Das 
+y-x-Diagramm ist eine Sinuskurve. <br>
+
+Interpretation: Du siehst die Form der Welle im Raum genau in diesem Moment (Berge und Täler entlang des Seils). <br>
+
+<b>Merksatz:</b> <br>
+
+Momentaufnahme = „Wie sieht die Welle entlang des Seils gerade aus?“ <br>
+
+Diagramm: y gegen x bei festem t.</p>
+
+
+     <div class="wb-img">
+  <img src="pdf-bilder/bild02.png" alt="Momentaufnahme einer harmonischen Welle">
+</div>
+<br>
+<h3>Rückwärts denken</h3>
+<p>Wie du bei der Simulation vielleicht gemerkt hast, muss man eine Welle rückwärts denken, wenn man sie zu einem bestimmten Zeitpunkt zeichen will, denn die 
+  Welle breitet sich mit der Zeit aus.   <br> 
+  Hier eine Darstellung der Ausbreitung der Welle zu verschiednen Zeitpunkten:
+</p>
+
+  <div class="wb-img">
+  <img src="pdf-bilder/bild05.png" alt="Momentaufnahme einer harmonischen Welle">
+</div>
+<h3>Schritt für Schritt-Anleitung</h3>
+<p> Um ein Momentanbild der Welle zu zeichnen, startest du mit dem Anfang der Welle und betrachtest die Auslenkung y in Abhängigkeit von x zu einem festen Zeitpunkt t. <br>
+Du überlegst, wie weit die Welle in der Zeit gekommen ist, die du betrachten möchtest. Da sich die Welle mit konstanter Geschwindigkeit c ausbreitet, ist die Welle
+zum Zeitpunkt t_0 $\delta x = c \cdot t_0$ gekommen. Hier startest du die Kurve und zeichnest die Sinuskurve rückwärts nach links. Startet die Schwingung nach oben, dann 
+zeichnest du auch nach links zuerst nach oben. Startet sie nach unten, dann zeichnest du auch nach links zuerst nach unten. <br>
+Wenn du nun einen anderen Zeitpunkt t betrachtest, dann ist die Welle fortgeschritten und somit die Auslenkung y(x) phasenverschoben. <br>
+Die Phasendifferenz Δφ bestimmt, wie weit sich die Schwingung schon ortbewegt hat.</p>
+
+<p><b>Beispiel 2:</b> Wie oben im Beispiel 1 fängt der Erreger zum Zeitpunkt t=0s mit einer Amplitude A=20cm und Periodendauer T=0,5s nach oben zu schwingen an. Die Ausbreitungsgeschwindigkeit der Welle ist c=0,3 m/s. <br>
+wir betrachten die Schwingung als Momentanbild nach 1s.</p>
+<p>Da es eine konstante Bewegung ist, mit der sich die Störung ausbreitet, gilt: c=Δx/t, also $\delta x = c \cdot t_0= 0,3 \frac{m}{s} \cdot 1s = 0,3m$, und somit sarten wir bei x=0,3m. <br>
+  Danach zeichnen wir von da an die Schwingung <b>rückwärts, d.h. nach links</b> mit Amplitude A=20cm und Periodendauer T=0,5s zuerst <b>nach oben</b>: <br>
+</p>
+
+<div class="wb-img">
+  <img src="pdf-bilder/bild06.png" alt="Momentaufnahme einer harmonischen Welle">
+</div>
+
+
+
+<h2>Warum beide Diagramme Sinuskurven sind, aber etwas völlig anderes zeigen</h2>
+      <p>
+
+Das ist der Kern deiner Beschreibung: <br>
+
+Beim y-x-Diagramm ist die Zeit fest → du siehst die räumliche Form der Welle. <br>
+
+Beim y-t-Diagramm ist der Ort fest → du siehst die zeitliche Schwingung eines Teilchens. <br>
+
+Beide sehen „sinusförmig“ aus, aber: <br>
+y(x): Sinus im Ort (Wellenberge im Raum) <br>
+y(t): Sinus in der Zeit (Auf-und-ab-Schwingen)
+</p>
+
+
+     <div class="wb-img">
+  <img src="pdf-bilder/bild03.png" alt="Vergleich y-x- und y-t-Diagramm">
+</div>
+
+
+<h2>Aufgaben</h2>
+  <p><b>Heftaufschrieb:</b> Beschreibe in deinen eigenen Worten die beiten Darstellungsweisen einer Welle, einmal als Schwingung eines Ortes und einmal als Momentanbild. 
+    Gehe auch auf die genaue Vorgehensweise zur Zeichnung der beiden Diagramme ein.</p>
+      <p> <b>Heftaufschrieb:</b> Erkläre nochmal genau den Unterschied zwischen einem y-x-Diagramm und einem y-t-Diagramm, was jeweils dargestellt wird. </p>
+    </section>
+
+     <section data-wb-page="2">
+
+   
+      <h1>Interaktive Aufgaben</h1>
+      <h2>Aufgaben</h2>
+
+      <div data-wb-type="mcq">
+        <script type="application/json" class="wb-config">
+        {
+          "id":"mcq1",
+          "title":"Multiple Choice",
+          "questions":[
+            {
+                    
+    "text": "Was transportieren Wellen (z.B. auf einem Seil) hauptsächlich?",
+    "choices": [
+      { "id": "a", "label": "Wellen transportieren Materie dauerhaft von A nach B." },
+      { "id": "b", "label": "Wellen transportieren Energie (und Information)." },
+      { "id": "c", "label": "Wellen transportieren nur Ort." }
+    ],
+    "correct": ["b"],
+    "explain": "Bei mechanischen Wellen schwingen die Teilchen um ihre Ruhelage, aber die Störung (Energie/Information) breitet sich aus."
+  },
+  {
+    "text": "Was bedeutet die Schreibweise y(x,t)?",
+    "choices": [
+      { "id": "a", "label": "Die Auslenkung y hängt vom Ort x und der Zeit t ab." },
+      { "id": "b", "label": "Der Ort x hängt von der Auslenkung y ab." },
+      { "id": "c", "label": "Die Zeit t ist immer konstant." }
+    ],
+    "correct": ["a"],
+    "explain": "y(x,t) ordnet jedem Ort x und jedem Zeitpunkt t eine Auslenkung y zu."
+  },
+  {
+    "text": "Was ist eine Momentaufnahme einer Welle?",
+    "choices": [
+      { "id": "a", "label": "Man hält die Zeit fest (t = t_0) und betrachtet y in Abhängigkeit von x." },
+      { "id": "b", "label": "Man hält den Ort fest (x = x_0) und betrachtet y in Abhängigkeit von t." },
+      { "id": "c", "label": "Man misst nur die maximale Auslenkung." }
+    ],
+    "correct": ["a"],
+    "explain": "Momentaufnahme: Zeitpunkt einfrieren → räumliches Profil y(x,t_0)."
+  },
+  {
+    "text": "Welche Achsen gehören zum y-x-Diagramm einer Momentaufnahme?",
+    "choices": [
+      { "id": "a", "label": "x-Achse: Ort x, y-Achse: Auslenkung y." },
+      { "id": "b", "label": "x-Achse: Zeit t, y-Achse: Auslenkung y." },
+      { "id": "c", "label": "x-Achse: Ort x, y-Achse: Zeit t." }
+    ],
+    "correct": ["a"],
+    "explain": "Im y-x-Diagramm wird die Auslenkung über dem Ort dargestellt (Zeit ist fest)."
+  },
+  {
+    "text": "Was zeigt ein y-t-Diagramm bei x = x_0?",
+    "choices": [
+      { "id": "a", "label": "Die räumliche Form der Welle zu einem festen Zeitpunkt." },
+      { "id": "b", "label": "Die zeitliche Schwingung eines festen Teilchens." },
+      { "id": "c", "label": "Die Wellenlänge λ direkt." }
+    ],
+    "correct": ["b"],
+    "explain": "Bei festem Ort x_0 sieht man, wie die Auslenkung y mit der Zeit t schwingt."
+  },
+  {
+    "text": "Welche Aussage ist korrekt (harmonische Welle)?",
+    "choices": [
+      { "id": "a", "label": "Die Momentaufnahme y(x,t_0) ist sinusförmig." },
+      { "id": "b", "label": "Der Zeitverlauf y(x_0,t) ist sinusförmig." },
+      { "id": "c", "label": "Beides ist sinusförmig, aber es sind unterschiedliche Diagramme." }
+    ],
+    "correct": ["a", "b", "c"],
+    "explain": "Bei harmonischen Wellen sind sowohl räumliches Profil (bei festem t) als auch zeitlicher Verlauf (bei festem x) sinusförmig."
+  },
+  {
+    "text": "Warum sind die Schwingungen verschiedener Teilchen entlang des Seils phasenverschoben?",
+    "choices": [
+      { "id": "a", "label": "Weil die Störung Zeit braucht, um sich auszubreiten." },
+      { "id": "b", "label": "Weil alle Teilchen exakt gleichzeitig starten." },
+      { "id": "c", "label": "Weil die Amplitude A je nach Ort immer null ist." }
+    ],
+    "correct": ["a"],
+    "explain": "Teilchen weiter entfernt werden später „erreicht“ → ihre Sinusschwingung ist zeitlich versetzt (phasenverschoben)."
+  },
+  {
+    "text": "Was gilt für Δx = λ?",
+    "choices": [
+      { "id": "a", "label": "Δφ = 2π (gleiche Phase)." },
+      { "id": "b", "label": "Δφ = π (gegenphasig)." },
+      { "id": "c", "label": "Δφ = 0 ist nie möglich." }
+    ],
+    "correct": ["a","b"],
+    "explain": "Nach einer ganzen Wellenlänge wiederholt sich die Phase: Δφ  = (2π/λ)·λ = 2π."
+  }
+]
+  
+
+
+
+
+        }
+        </script>
+      </div>
+
+
+
+
+
+      <div data-wb-type="cloze">
+        <script type="application/json" class="wb-config">
+        {
+          "id":"cloze1",
+          "title":"Drag the Words",
+          
+  "bank": [
+    "Wellenfunktion",
+    "y(x,t)",
+    "Ort x",
+    "Zeit t",
+    "Auslenkung y",
+    "Momentaufnahme",
+    "y-x-Diagramm",
+    "Sinuskurve",
+    "Ort",
+    "Zeitverlauf",
+    "y-t-Diagramm",
+    "Phasenverschiebung",
+    "Phasendifferenz Δφ",
+    "Abstand Δx",
+    "Wellenzahl k",
+    "k = 2π/λ",
+    "Wellenlänge λ"
+  ],
+  "segments": [
+    { "t": "text", "v": "Eine Welle lässt sich durch eine " },
+    { "t": "gap",  "a": "Wellenfunktion" },
+    { "t": "text", "v": " beschreiben. Man schreibt sie oft als " },
+    { "t": "gap",  "a": "y(x,t)" },
+    { "t": "text", "v": ". Dabei ist " },
+    { "t": "gap",  "a": "Ort x" },
+    { "t": "text", "v": " die Position entlang des Seils und " },
+    { "t": "gap",  "a": "Zeit t" },
+    { "t": "text", "v": " der betrachtete Zeitpunkt. Die Größe " },
+    { "t": "gap",  "a": "Auslenkung y" },
+    { "t": "text", "v": " gibt an, wie weit das Teilchen ausgelenkt ist." },
+
+    { "t": "text", "v": "Hält man die Zeit fest, erhält man eine " },
+    { "t": "gap",  "a": "Momentaufnahme" },
+    { "t": "text", "v": ". Im " },
+    { "t": "gap",  "a": "y-x-Diagramm" },
+    { "t": "text", "v": " zeichnet man die Auslenkung gegen den Ort; bei harmonischer Anregung ist das eine " },
+    { "t": "gap",  "a": "Sinuskurve" },
+    { "t": "text", "v": "." },
+
+    { "t": "text", "v": "Hält man dagegen den Ort fest, beobachtet man den " },
+    { "t": "gap",  "a": "Zeitverlauf" },
+    { "t": "text", "v": " der Schwingung. Im " },
+    { "t": "gap",  "a": "y-t-Diagramm" },
+    { "t": "text", "v": " zeichnet man die Auslenkung gegen die Zeit; auch das ist eine Sinuskurve." },
+
+    { "t": "text", "v": "Teilchen an verschiedenen Orten schwingen nicht gleichzeitig, sondern mit einer " },
+    { "t": "gap",  "a": "Phasenverschiebung" },
+    { "t": "text", "v": ". Die " },
+    { "t": "gap",  "a": "Phasendifferenz Δφ" },
+    { "t": "text", "v": " hängt vom " },
+    { "t": "gap",  "a": "Abstand Δx" },
+    { "t": "text", "v": " ab: Δφ = k·Δx. Dabei ist k die " },
+    { "t": "gap",  "a": "Wellenzahl k" },
+    { "t": "text", "v": " mit " },
+    { "t": "gap",  "a": "k = 2π/λ" },
+    { "t": "text", "v": ", wobei λ die " },
+    { "t": "gap",  "a": "Wellenlänge λ" },
+    { "t": "text", "v": " ist." }
+  ]
+
+
+        }
+        </script>
+      </div>
+
+      <h2>Reflexion</h2>
+      <div data-wb-type="essay">
+        <script type="application/json" class="wb-config">
+        {
+          "id":"essay1",
+          "title":"Freitext – Beispiel",
+          "storagePrefix":"wellen_",
+          "exportName":"wellen-ergebnisse.txt",
+          "fields":[
+            {"label":"Name","key":"name","kind":"text","placeholder":"Vorname Nachname"},
+            {"label":"Antwort","key":"answer","kind":"textarea","placeholder":"Schreibe hier..."}
+          ]
+        }
+        </script>
+      </div>
+
+    </section>
+
+<section data-wb-page="3">
+      <h1>Wichtige Größen zur Beschreibung einer harmonischen Welle</h1>
+      <p class="wb-muted">Hier lernst du, welche Größen zur Beschreibung einer harmonischen Welle verwendet werden und wie sie miteinander zusammenhängen.</p>
+      <h2>Physikalische Größen</h2>
+      <p> 
+ 	<b>ŷ -
+Amplitude: </b> <br> Maximale Auslenkung der schwingenden Teilchen einer Welle aus ihrer Ruhelage bzw.  Gleichgewichtslage.
+  Wir gehen dabei davon aus, dass die Welle ungedämpft ist, d.h dass alle schwingenden Teilchen die gleiche Amplitude wie das erregende Teilchen besitzen. </p>
+ 
+ 	 <p><b> T - Schwingungsdauer:</b> <br> Zeit, die jedes einzelne Teilchen der harmonischen Welle für eine volle Schwingung benötigt. Wir gehen dabei davon aus, 
+    dass alle schwingenden Teilchen die gleiche Schwingungsdauer wie das erregende Teilchen besitzen. </p>
+ 
+ 	 <p><b>f - (Erreger-)Frequenz: </b> <br>Anzahl der Schwingungsperioden jedes einzelnen Teilchens pro 
+    Zeiteinheit. Wir gehen dabei davon aus, dass alle schwingenden Teilchen die gleiche Frequenz wie das 
+    erregende Teilchen besitzen. Es gilt <b> $f=\frac{1}{T}$ </b>. </p>
+ 
+ 	 <p> <b> &omega; - Kreisfrequenz:</b> <br> Überstrichener Winkel (im Bogenmaß) jedes einzelne Teilchens 
+    pro Zeiteinheit. Wir gehen dabei davon aus, dass alle schwingenden Teilchen die gleiche Kreisfrequenz 
+    wie das erregende Teilchen besitzen. Es gilt <b> $\omega= 2 \cdot \pi \cdot f= \frac{2 \cdot \pi}{T}$</b> </p>
+ 
+ 
+Bemerkung: Unter den von uns genannten Annahmen sind Amplitude 
+ und Schwingungsdauer 
+ (bzw. Erregerfrequenz 
+ und Kreisfrequenz 
+) einer Welle allein durch den Erreger der Welle bestimmt.
+
+ <p>	<b>c - Phasen- oder Ausbreitungsgeschwindigkeit der Welle: </b> <br> Geschwindigkeit, mit der sich die Störung über den 
+  Wellenträger ausbreitet. Leicht zu bestimmen ist c, wenn man einen ausgezeichneten Punkt (z.B. den Wellenberg) beobachtet. </p>
+Achtung: Die Phasengeschwindigkeit c ist nicht mit der Geschwindigkeit der von der Welle erfassten Teilchen zu verwechseln.
+ 
+Bemerkung: Die Phasen- oder Ausbreitungsgeschwindigkeit 
+ einer Welle ist allein durch den Wellenträger bestimmt.
+
+  <p>	 <b> &lambda; - Wellenlänge: </b> <br> x-Abstand eines Teilchens zum nächsten Teilchen im gleichen Schwingungszustand (d.h. die beiden Teilchen müssen die gleiche Auslenkung und die gleiche Geschwindigkeit haben).
+Anmerkung: Zu Teilchen mit gleichem Schwingungszustand sagt man auch gleichphasig schwingende Teilchen.
+        
+      </p>
+      <h2>Zusammenhänge der Größen</h2>
+      <p>Wenn sich eine harmonische Schwingung mit der Schwingungsdauer T
+ bzw. der Erregerfrequenz f
+ in einem Medium mit der Ausbreitungsgeschwindigkeit c
+ in Form einer harmonischen Welle ausbreitet, dann berechnet sich die Wellenlänge 
+ dieser Welle durch
+      </p>
+      <p>
+      <b> $ \lambda = c \cdot T = \frac{c}{f} $ </b>
+      </p>
+      <p>Die Phasengeschwindigkeit 
+ einer harmonischen Welle ist somit gegeben durch
+      </p>
+      <p>
+      <b> $ c = \lambda \cdot f = \frac{\lambda}{T} $ </b>
+      </p>  
+
+          <h2>Aufgaben</h2>
+
+          <p> <b>Aufgabe 1: </b>Heftaufschrieb: Schreibe dir alle Physikalischen Größen auf und erkläre sie in deinen Worten.</p>
+      <p><b>Aufgabe 2:</b></p>
+      <div data-wb-type="mcq">
+        <script type="application/json" class="wb-config">
+        {
+          "id":"mcq1",
+          "title":"Multiple Choice",
+          "questions":[
+  {
+    "text": "Was bedeutet Amplitude A bei einer mechanischen Welle?",
+    "choices": [
+      { "id": "a", "label": "Maximale Auslenkung der schwingenden Teilchen aus der Ruhelage (Gleichgewichtslage)." },
+      { "id": "b", "label": "Geschwindigkeit, mit der sich die Störung im Medium ausbreitet." },
+      { "id": "c", "label": "Abstand zweier gleichphasiger Teilchen." }
+    ],
+    "correct": ["a"],
+    "explain": "Die Amplitude ist die größte Auslenkung eines Teilchens von der Ruhelage."
+  },
+  {
+    "text": "Welche Aussage passt zur Annahme „ungedämpfte Welle“ in diesem Kontext?",
+    "choices": [
+      { "id": "a", "label": "Alle erfassten Teilchen besitzen die gleiche Amplitude wie das erregende Teilchen." },
+      { "id": "b", "label": "Die Amplitude nimmt mit der Zeit/Entfernung ab." },
+      { "id": "c", "label": "Die Welle breitet sich gar nicht aus." }
+    ],
+    "correct": ["a"],
+    "explain": "Ungedämpft bedeutet hier: keine Abnahme der Amplitude; alle Teilchen schwingen mit gleicher Amplitude."
+  },
+  {
+    "text": "Was ist die Schwingungsdauer T?",
+    "choices": [
+      { "id": "a", "label": "Zeit für eine volle Schwingung eines Teilchens." },
+      { "id": "b", "label": "Anzahl der Schwingungen pro Sekunde." },
+      { "id": "c", "label": "Zeit, die die Welle für eine Strecke von einer Wellenlänge braucht." }
+    ],
+    "correct": ["a"],
+    "explain": "Die Schwingungsdauer ist die Dauer einer vollständigen Periode."
+  },
+  {
+    "text": "Welche Beziehung gilt zwischen Frequenz f und Schwingungsdauer T?",
+    "choices": [
+      { "id": "a", "label": "f = 1/T" },
+      { "id": "b", "label": "T = 1/f" },
+      { "id": "c", "label": "f = T" }
+    ],
+    "correct": ["a", "b"],
+    "explain": "Frequenz und Periodendauer sind Kehrwerte."
+  },
+  {
+    "text": "Was beschreibt die (Erreger-)Frequenz f bei einer harmonischen Welle?",
+    "choices": [
+      { "id": "a", "label": "Anzahl der Schwingungsperioden pro Zeiteinheit eines Teilchens." },
+      { "id": "b", "label": "Maximale Auslenkung eines Teilchens." },
+      { "id": "c", "label": "Geschwindigkeit der Teilchen im Medium." }
+    ],
+    "correct": ["a"],
+    "explain": "Die Frequenz ist die Anzahl vollständiger Schwingungen pro Zeit."
+  },
+  {
+    "text": "Was ist die Kreisfrequenz ω?",
+    "choices": [
+      { "id": "a", "label": "Überstrichener Winkel (im Bogenmaß) pro Zeiteinheit." },
+      { "id": "b", "label": "Anzahl der Schwingungen pro Zeiteinheit." },
+      { "id": "c", "label": "Abstand zweier Wellenberge." }
+    ],
+    "correct": ["a"],
+    "explain": "ω ist eine Winkelgeschwindigkeit: Phase in Radiant pro Sekunde."
+  },
+  {
+    "text": "Welche Beziehungen gelten für die Kreisfrequenz ω?",
+    "choices": [
+      { "id": "a", "label": "ω = 2π f" },
+      { "id": "b", "label": "ω = 2π / T" },
+      { "id": "c", "label": "ω = f / 2π" }
+    ],
+    "correct": ["a", "b"],
+    "explain": "Da f = 1/T gilt ω = 2πf = 2π/T."
+  },
+  {
+    "text": "Welche Größen sind (unter den genannten Annahmen) allein durch den Erreger bestimmt?",
+    "choices": [
+      { "id": "a", "label": "Amplitude A" },
+      { "id": "b", "label": "Schwingungsdauer T" },
+      { "id": "c", "label": "Ausbreitungsgeschwindigkeit v" },
+      { "id": "d", "label": "Erregerfrequenz f" },
+      { "id": "e", "label": "Kreisfrequenz ω" }
+    ],
+    "correct": ["a", "b", "d", "e"],
+    "explain": "A, T (bzw. f, ω) werden vom Erreger vorgegeben; v hängt vom Medium ab."
+  },
+  {
+    "text": "Was bedeutet Phasen- oder Ausbreitungsgeschwindigkeit v?",
+    "choices": [
+      { "id": "a", "label": "Geschwindigkeit, mit der sich die Störung im Wellenträger ausbreitet." },
+      { "id": "b", "label": "Geschwindigkeit der schwingenden Teilchen." },
+      { "id": "c", "label": "Geschwindigkeit eines ausgezeichneten Punktes (z.B. Wellenberg) entlang des Mediums." }
+    ],
+    "correct": ["a", "c"],
+    "explain": "v ist die Ausbreitungsgeschwindigkeit der Wellenform (z.B. eines Wellenbergs), nicht die Teilchengeschwindigkeit."
+  },
+  {
+    "text": "Welche Aussage ist richtig (Achtung-Hinweis)?",
+    "choices": [
+      { "id": "a", "label": "Die Phasengeschwindigkeit v ist nicht die gleiche wie die Geschwindigkeit der Teilchen." },
+      { "id": "b", "label": "Die Teilchen bewegen sich mit v dauerhaft in Ausbreitungsrichtung." },
+      { "id": "c", "label": "Teilchengeschwindigkeit und Phasengeschwindigkeit sind immer identisch." }
+    ],
+    "correct": ["a"],
+    "explain": "Teilchen schwingen um die Ruhelage; die Wellenform wandert."
+  },
+  {
+    "text": "Wovon ist die Phasen-/Ausbreitungsgeschwindigkeit v (unter den Annahmen) allein abhängig?",
+    "choices": [
+      { "id": "a", "label": "Vom Wellenträger/Medium (z.B. Seilspannung, Dichte)." },
+      { "id": "b", "label": "Nur vom Erreger (z.B. wie stark man anregt)." },
+      { "id": "c", "label": "Nur von der Amplitude A." }
+    ],
+    "correct": ["a"],
+    "explain": "v ist eine Eigenschaft des Mediums, nicht des Erregers."
+  },
+  {
+    "text": "Was ist die Wellenlänge λ?",
+    "choices": [
+      { "id": "a", "label": "x-Abstand zum nächsten Teilchen im gleichen Schwingungszustand (gleiche Auslenkung und gleiche Geschwindigkeit)." },
+      { "id": "b", "label": "Maximale Auslenkung eines Teilchens." },
+      { "id": "c", "label": "Zeit für eine volle Schwingung." }
+    ],
+    "correct": ["a"],
+    "explain": "λ ist der räumliche Abstand zweier gleichphasiger Punkte."
+  },
+  {
+    "text": "Was bedeutet „gleichphasig schwingende Teilchen“?",
+    "choices": [
+      { "id": "a", "label": "Sie haben zur gleichen Zeit gleiche Auslenkung und gleiche Geschwindigkeit (gleiche Phase)." },
+      { "id": "b", "label": "Sie haben nur die gleiche Auslenkung, egal welche Geschwindigkeit." },
+      { "id": "c", "label": "Sie schwingen mit unterschiedlichen Frequenzen." }
+    ],
+    "correct": ["a"],
+    "explain": "Gleiche Phase bedeutet gleicher Schwingungszustand, inklusive Bewegungsrichtung."
+  },
+  {
+    "text": "Welche Beziehungen verknüpfen Ausbreitungsgeschwindigkeit c, Frequenz f, Schwingungsdauer T und Wellenlänge λ?",
+    "choices": [
+      { "id": "a", "label": "c = λ f" },
+      { "id": "b", "label": "λ = c / f" },
+      { "id": "c", "label": "λ = c · T" },
+      { "id": "d", "label": "c = T / λ" }
+    ],
+    "correct": ["a", "b", "c"],
+    "explain": "Aus c = λf folgt λ = c/f und mit f = 1/T auch λ = c·T."
+  }
+]        }
+        </script>
+      </div>  
+      
+<h2>Teste dein Wissen</h2>
+      <p> Mache das Quiz auf folgender Internetseite: <a href="https://www.leifiphysik.de/mechanik/mechanische-wellen/aufgabe/quiz-zu-mechanischen-wellen" target="_blank" rel="noopener">Zur Internetseite</a>
+</p>
+
+
+
+    </section>
+
+<section data-wb-page="4">
+      <h1>Aufstellen der Wellenfunktion</h1>
+      <p class="wb-muted">Hier lernst du nun, wie genau die Wellenfunktion aussieht und wie du sie Schritt füt Schritt aufstellst.</p>
+      <h2>Zuerst, der zeitliche Verlauf an einem festen Ort.</h2>
+      <p> 
+ 
+        
+      </p>
+
+        <h2>Dann die Momentaufnahme, der örtliche Verlauf zu einem Festen Zeitpunkt</h2>
+      <p> 
+</p>
+
+
+     <div class="wb-img">
+  <img src="pdf-bilder/bild02.png" alt="Momentaufnahme einer harmonischen Welle">
+</div>
+
+<h2>Dann beides zusammen</h2>
+      <p> 
+</p>
+
+
+     <div class="wb-img">
+  <img src="pdf-bilder/bild01.png" alt="Zeitlicher Verlauf einer harmonischen Welle">
+</div>
+
+<h2>Warum beide Diagramme Sinuskurven sind, aber etwas völlig anderes zeigen</h2>
+      <p>
+
+
+</p>
+
+
+     <div class="wb-img">
+  <img src="pdf-bilder/bild03.png" alt="Vergleich y-x- und y-t-Diagramm">
+</div>
+
+    </section>
+
+  </div>
+
+  <script src="wellen_library_v2.js"></script>
+  <script>
+    WellenBook.autoMount();
+    WellenBlocks.autoMount();
+  </script>
+</body>
+</html>
