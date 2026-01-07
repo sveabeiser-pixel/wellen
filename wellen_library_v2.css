@@ -367,3 +367,11 @@ label.wb-choice:hover{background:#f3f6ff}
 .wb-textarea{min-height: 120px; resize:vertical}
 .wb-label{font-weight:900; display:block; margin-bottom:6px}
 .wb-spacer{height:12px}
+
+/* Image styling */
+.wb-img img{
+  display:block;
+  max-width:50%;
+  height:auto;
+  border-radius:12px;
+}

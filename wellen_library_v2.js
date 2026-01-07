@@ -131,32 +131,81 @@
     const scoreEl = el("div", {class:"wb-score", "aria-live":"polite"});
     const gaps = [];
 
-    function attachChip(chip){
-      chip.addEventListener("dragstart", () => { global.__wbDragChip = chip; });
-      chip.addEventListener("dragend",   () => { global.__wbDragChip = null; });
-      chip.addEventListener("click",     () => bank.appendChild(chip));
+        // --- shuffle (einmal beim Start) ---
+    function shuffle(arr){
+      for(let i = arr.length - 1; i > 0; i--){
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
     }
+
+    function clearGap(g){
+      g.classList.remove("filled","ok","bad");
+      g.innerHTML = "&nbsp;";
+    }
+
+    function attachChip(chip){
+      chip.addEventListener("dragstart", (e) => {
+        global.__wbDragChip = chip;
+        // stabiler in Browsern:
+        if(e.dataTransfer){
+          e.dataTransfer.setData("text/plain", chip.getAttribute("data-token") || "");
+          e.dataTransfer.effectAllowed = "move";
+        }
+      });
+      chip.addEventListener("dragend", () => { global.__wbDragChip = null; });
+
+      // Klick = zurück in Wortbank
+      chip.addEventListener("click", () => {
+        const fromGap = chip.parentElement && chip.parentElement.closest(".wb-gap");
+        bank.appendChild(chip);
+        if(fromGap && !qs(".wb-chip", fromGap)) clearGap(fromGap);
+      });
+    }
+
     function makeChip(token){
       const chip = el("div", {class:"wb-chip", draggable:"true", "data-token": token}, [token]);
       attachChip(chip);
       return chip;
     }
-    cfg.bank.forEach(t => bank.appendChild(makeChip(String(t))));
 
-    function allowDrop(target){
-      target.addEventListener("dragover", (e) => e.preventDefault());
-      target.addEventListener("drop", (e) => {
+    // Bank zufällig befüllen
+    shuffle(cfg.bank.map(t => String(t))).forEach(t => bank.appendChild(makeChip(t)));
+
+    // --- Drop auf GAP ---
+    function allowDropGap(gap){
+      gap.addEventListener("dragover", (e) => e.preventDefault());
+      gap.addEventListener("drop", (e) => {
         e.preventDefault();
         const chip = global.__wbDragChip;
         if(!chip) return;
-        const existing = qs(".wb-chip", target);
-        if(existing) bank.appendChild(existing);
-        target.innerHTML = "";
-        target.appendChild(chip);
-        target.classList.add("filled");
-        target.classList.remove("ok","bad");
+
+        const fromGap = chip.parentElement && chip.parentElement.closest(".wb-gap");
+        if(fromGap && fromGap !== gap && !qs(".wb-chip", fromGap)) clearGap(fromGap);
+
+        const existing = qs(".wb-chip", gap);
+        if(existing && existing !== chip) bank.appendChild(existing);
+
+        gap.innerHTML = "";
+        gap.appendChild(chip);
+        gap.classList.add("filled");
+        gap.classList.remove("ok","bad");
       });
     }
+
+    // --- Drop auf BANK (WICHTIG: NICHT innerHTML leeren!) ---
+    bank.addEventListener("dragover", (e) => e.preventDefault());
+    bank.addEventListener("drop", (e) => {
+      e.preventDefault();
+      const chip = global.__wbDragChip;
+      if(!chip) return;
+
+      const fromGap = chip.parentElement && chip.parentElement.closest(".wb-gap");
+      bank.appendChild(chip);
+      if(fromGap && !qs(".wb-chip", fromGap)) clearGap(fromGap);
+    });
+
 
     const text = el("div", {class:"wb-text"});
     cfg.segments.forEach(s => {
@@ -164,12 +213,12 @@
       if(s.t === "gap"){
         const g = el("span", {class:"wb-gap", "data-answer": String(s.a || "")}, []);
         g.innerHTML = "&nbsp;";
-        allowDrop(g);
+        allowDropGap(g);
         gaps.push(g);
         text.appendChild(g);
       }
     });
-    allowDrop(bank);
+    
 
     function check(){
       let okCount = 0;
@@ -504,3 +553,4 @@ ${fi.input.value || ""}
   global.WellenBook   = { mount: mountBook, autoMount: autoMountBooks };
   global.WellenLibrary = { autoMountAll: (opts={}) => ({ books: autoMountBooks(opts), blocks: autoMountBlocks(opts) }) };
 })(window);
+
