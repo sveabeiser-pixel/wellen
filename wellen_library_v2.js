@@ -15,7 +15,47 @@
   const qs  = (sel, el=document) => el.querySelector(sel);
   const qsa = (sel, el=document) => Array.from(el.querySelectorAll(sel));
 
-  function el(tag, attrs={}, children=[]){
+function el(tag, attrs = {}, children = []) {
+  const SVG_NS = "http://www.w3.org/2000/svg";
+
+  // Tags, die wir als SVG behandeln (erweiterbar)
+  const svgTags = new Set([
+    "svg","g","path","circle","rect","line","polyline","polygon","ellipse",
+    "defs","use","symbol","clipPath","mask",
+    "linearGradient","radialGradient","stop",
+    "pattern","text","tspan"
+  ]);
+
+  const isSvg = svgTags.has(String(tag).toLowerCase());
+  const node = isSvg ? document.createElementNS(SVG_NS, tag) : document.createElement(tag);
+
+  for (const [k, v] of Object.entries(attrs)) {
+    if (v == null) continue;
+
+    if (k === "class") {
+      // class ist auch bei SVG ok
+      node.setAttribute("class", v);
+    } else if (k.startsWith("on") && typeof v === "function") {
+      node.addEventListener(k.slice(2), v);
+    } else if (k === "html") {
+      // innerHTML in SVG ist in modernen Browsern ok (wird dann im SVG-NS geparst)
+      node.innerHTML = v;
+    } else {
+      // SVG-Attribute wie viewBox müssen genau so gesetzt werden
+      node.setAttribute(k, String(v));
+    }
+  }
+
+  for (const c of children) {
+    if (c == null) continue;
+    node.appendChild(typeof c === "string" ? document.createTextNode(c) : c);
+  }
+  return node;
+}
+
+
+
+  function el_(tag, attrs={}, children=[]){
     const node = document.createElement(tag);
     for(const [k,v] of Object.entries(attrs)){
       if(k === "class") node.className = v;
